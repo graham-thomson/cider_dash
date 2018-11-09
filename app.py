@@ -17,9 +17,9 @@ def hello_world():
 @app.route('/')
 def render_dash():
 
-    plot = plot_temps("test_data.csv")
+    plot = plot_temps("./test_data.csv")
 
-    df = pd.read_csv("./hourly_forecast.csv")
+    df = pd.read_csv("./test_data.csv")
     header = df.columns
     data = df.get_values()
     return render_template("temp_dash.html", header=header, data=data, plot=Markup(plot))
