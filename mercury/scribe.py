@@ -4,7 +4,7 @@ import random
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-# from sense_hat import SenseHat
+from sense_hat import SenseHat
 
 from mercury.tables import Base, EnvTemps
 from mercury.measures import *
@@ -27,24 +27,23 @@ def insert_envtemp_data(base, datetime, sh_temp, adj_sh_temp, local_outdoor_temp
     session.add(new_temps)
     session.commit()
 
-if __name__ == '__main__':
 
-    # sense = SenseHat()
+def create_mock_data():
+    insert_envtemp_data(Base,
+                        dt.datetime.now(),
+                        random.randint(0, 100),
+                        random.randint(0, 100),
+                        random.randint(0, 100),
+                        random.randint(0, 100)
+                        )
 
-    while True:
-        # current_conditions = [
-        #     dt.datetime.now(),
-        #     float(get_inside_temp(sense)),
-        #     float(get_outside_temp("7c5e200a31d7dcd5e40cbbf4de0f37e7", 42.3566424, -71.0644743)),
-        #     float(calibrated_temp(sense)),
-        #     float(cpu_temp())
-        # ]
+def get_current_conditions():
+    sense = SenseHat()
 
-        insert_envtemp_data(Base,
-                            dt.datetime.now(),
-                            random.randint(0,100),
-                            random.randint(0,100),
-                            random.randint(0,100),
-                            random.randint(0,100)
-                            )
-        time.sleep(6)
+    insert_envtemp_data(Base,
+                        dt.datetime.now(),
+                        float(get_inside_temp(sense)),
+                        float(calibrated_temp(sense)),
+                        float(get_outside_temp("7c5e200a31d7dcd5e40cbbf4de0f37e7", 42.3566424, -71.0644743)),
+                        float(cpu_temp())
+                        )
