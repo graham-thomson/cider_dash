@@ -4,8 +4,7 @@ from bokeh.plotting import figure, show, output_file
 from bokeh.embed import file_html
 from bokeh.resources import CDN
 
-def plot_temps(path_to_csv, title="Temperature Plot", fig_width=600, fig_height=400):
-    df = pd.read_csv(path_to_csv)
+def plot_temps(df, title="Temperature Plot", fig_width=600, fig_height=400):
 
     def datetime(x):
         return np.array(x, dtype=np.datetime64)
