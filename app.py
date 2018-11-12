@@ -27,7 +27,7 @@ def render_dash():
     #when you import the mercury package the database is created in the cwd not in the package directory...i think this is okay
     engine = create_engine("sqlite:///temps.db")
 
-    temp_data = pd.read_sql_query("SELECT * FROM envtemps", engine)
+    temp_data = pd.read_sql_query("SELECT * FROM envtemps", engine, index_col="id")
 
     plot = plot_temps(temp_data)
 
