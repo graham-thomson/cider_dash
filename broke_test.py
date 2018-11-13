@@ -4,7 +4,7 @@ from bokeh.plotting import figure, show, output_file
 from bokeh.embed import file_html
 from bokeh.resources import CDN
 
-def plot_temps(df, title="Temperature Plot", fig_width=600, fig_height=400):
+def plot_temps(df, title="Temperature Plot", fig_width=600, fig_height=250):
 
     def datetime(x):
         return np.array(x, dtype=np.datetime64)
@@ -13,6 +13,8 @@ def plot_temps(df, title="Temperature Plot", fig_width=600, fig_height=400):
                 plot_height=fig_height,
                 x_axis_type="datetime",
                 title=title)
+
+    plot.sizing_mode = "scale_width"
     plot.grid.grid_line_alpha = 0.3
     plot.xaxis.axis_label = 'Date'
     plot.yaxis.axis_label = 'Temp'
