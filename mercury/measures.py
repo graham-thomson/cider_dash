@@ -18,7 +18,12 @@ def get_outside_temp(apikey, lat, long):
     try:
         r = requests.get("https://api.darksky.net/forecast/{key}/{lat},{long}".format(key=apikey, lat=lat, long=long))
         if r.status_code == 200:
-            return r.json()["currently"]["temperature"]
+            outside_temp = r.json()["currently"]["temperature"]
+            try:
+                outside_temp = float(outside_temp)
+                return outside_temp
+            except (ValueError, TypeError):
+                return None
         return None
     except:
         return None

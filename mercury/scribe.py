@@ -44,6 +44,6 @@ def get_current_conditions():
                         dt.datetime.now(),
                         float(get_inside_temp(sense)),
                         float(calibrated_temp(sense)),
-                        float(get_outside_temp("7c5e200a31d7dcd5e40cbbf4de0f37e7", 42.3566424, -71.0644743)),
+                        get_outside_temp("7c5e200a31d7dcd5e40cbbf4de0f37e7", 42.3566424, -71.0644743),
                         float(cpu_temp())
                         )
