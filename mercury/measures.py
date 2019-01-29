@@ -4,12 +4,13 @@ import subprocess
 
 to_temp_f = lambda x: float(x) * (9./5.) + 32.
 
-def cpu_temp():
+def get_cpu_temp():
     return to_temp_f(float(re.search(r"(\d{2,}.\d+)", subprocess.check_output("vcgencmd measure_temp", shell=True)).group()))
 
 def calibrated_temp(sh):
-    temp = to_temp_f(sh.get_temperature())
-    return temp - ((cpu_temp() - temp)/.7)
+    sh_temp = to_temp_f(sh.get_temperature())
+    cpu_temp = get_cpu_temp()
+    return (0.6816715 * sh_temp) + (0.11538254 * cpu_temp) + 2.839289281005719
 
 def get_inside_temp(sh):
     return to_temp_f(sh.get_temperature())
