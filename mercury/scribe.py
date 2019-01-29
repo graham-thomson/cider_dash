@@ -45,5 +45,5 @@ def get_current_conditions():
                         float(get_inside_temp(sense)),
                         float(calibrated_temp(sense)),
                         get_outside_temp("7c5e200a31d7dcd5e40cbbf4de0f37e7", 42.3566424, -71.0644743),
-                        float(cpu_temp())
+                        float(get_cpu_temp())
                         )
