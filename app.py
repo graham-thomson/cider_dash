@@ -31,6 +31,8 @@ def render_dash():
                                   engine,
                                   parse_dates=["datetime"])
     temp_data["datetime"] = temp_data["datetime"].dt.tz_localize("US/Eastern")
+    for c in ["sh_temp", "adj_sh_temp", "cpu_temp"]:
+        temp_data[c] = temp_data[c].rolling(window=6).mean()
 
     plot = plot_temps(temp_data)
 
@@ -40,4 +42,4 @@ def render_dash():
     return render_template("temp_dash.html", header=header, data=data, plot=Markup(plot))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=80)
