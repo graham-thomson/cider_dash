@@ -1,7 +1,7 @@
-from flask import Flask, jsonify, request
-import random
 import datetime as dt
 from uuid import uuid4
+from flask import Flask, jsonify, request
+from mercury import *
 
 app = Flask(__name__)
 
@@ -28,7 +28,7 @@ def foo():
                 "request_time": dt.datetime.now()
             },
             "data": {
-                "temp": random.randint(10, 100)
+                "temp": get_probe_temp()
             }
         })
     else:
