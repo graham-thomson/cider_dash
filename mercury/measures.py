@@ -10,7 +10,6 @@ def to_temp_f(x):
 
 
 def get_cpu_temp():
-
     return to_temp_f(float(re.search(r"(\d{2,}.\d+)",
                                      subprocess.check_output("vcgencmd measure_temp", shell=True)).group()))
 
